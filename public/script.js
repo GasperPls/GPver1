@@ -138,7 +138,7 @@ function registerHandler(e) {
 
       // ✅ Added delay before redirecting to allow Firebase sync
       setTimeout(() => {
-        location.href = "/test.html";
+        location.href = "/home.html";
       }, 1000); // 1.0 second delay
     })
     .catch((error) => {
@@ -205,7 +205,7 @@ if (loginForm) {
       .then((cred) => {
         //Reset Form and then send the user to Home
         loginForm.reset();
-        location.href = "/test.html";
+        location.href = "/home.html";
       })
       .catch((error) => {
         loginForm.reset();

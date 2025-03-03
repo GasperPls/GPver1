@@ -40,7 +40,7 @@
               placeholder="Password"
               required
             />
-            <!-- Added Code: Login error message -->
+            <!--  Login error message -->
             <p id="loginError" style="color: red"></p>
             <button type="submit">Login</button>
           </form>
@@ -66,9 +66,18 @@
                 autocomplete="off"
                 required
               />
+              <!--  Confirm Password Field -->
+              <label for="regPasswordConfirm">Confirm Password:</label>
+              <input
+                type="password"
+                id="regPasswordConfirm"
+                autocomplete="off"
+                required
+              />
+
               <!-- Password strength feedback -->
               <p id="passwordMessage" style="color: red"></p>
-              <!-- Added Code: Registration error message -->
+              <!--  Registration error message -->
               <p id="regError" style="color: red"></p>
 
               <button type="submit">Register</button>

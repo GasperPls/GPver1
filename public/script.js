@@ -73,17 +73,19 @@ function registerHandler(e) {
 
   const emailInput = register.querySelector("#regEmail"); // Fixed reference
   const passwordInput = register.querySelector("#regPassword"); // Fixed reference
+  const passwordConfirmInput = register.querySelector("#regPasswordConfirm");
   const errorMessage = document.querySelector("#regError"); // Error message display
 
-  if (!emailInput || !passwordInput) {
+  if (!emailInput || !passwordInput || !passwordConfirmInput) {
     console.error("Error: Form inputs not found.");
     return;
   }
 
   const email = emailInput.value;
   const password = passwordInput.value;
+  const passwordConfirm = passwordConfirmInput.value;
 
-  // ✅ Prevent empty email or password submission
+  //  Prevent empty email or password submission
   if (!email) {
     console.warn("Email field is empty.");
     if (errorMessage) {
@@ -92,7 +94,7 @@ function registerHandler(e) {
     } else {
       alert("Please enter your email.");
     }
-    emailInput.focus(); // ✅ Added UX improvement
+    emailInput.focus(); //  Added UX improvement
     return;
   }
 
@@ -104,11 +106,23 @@ function registerHandler(e) {
     } else {
       alert("Please enter your password.");
     }
-    passwordInput.focus(); // ✅ Added UX improvement
+    passwordInput.focus(); //  Added UX improvement
     return;
   }
 
-  // ✅ Check password strength before proceeding
+  // Added Code: Check if passwords match
+  if (password !== passwordConfirm) {
+    if (errorMessage) {
+      errorMessage.textContent = "Passwords do not match.";
+      errorMessage.style.color = "red";
+    } else {
+      alert("Passwords do not match.");
+    }
+    passwordConfirmInput.focus(); // Added Code
+    return;
+  }
+
+  //  Check password strength before proceeding
   if (!isValidPassword(password)) {
     if (errorMessage) {
       errorMessage.textContent =
@@ -122,7 +136,7 @@ function registerHandler(e) {
         "Password must be at least 8 characters long, contain uppercase, lowercase, a number, and a special character."
       );
     }
-    passwordInput.focus(); // ✅ Added UX improvement
+    passwordInput.focus(); //  Added UX improvement
     return;
   }
 
@@ -130,20 +144,20 @@ function registerHandler(e) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
       console.log("User created successfully:", cred.user);
-      register.reset(); // ✅ Clear form after successful registration
+      register.reset(); //  Clear form after successful registration
 
       setTimeout(() => {
-        window.location.hash = ""; // ✅ Close registration popup after success
-      }, 500); // ✅ Small delay for visibility
+        window.location.hash = ""; //  Close registration popup after success
+      }, 500); //  Small delay for visibility
 
-      // ✅ Added delay before redirecting to allow Firebase sync
+      //  Added delay before redirecting to allow Firebase sync
       setTimeout(() => {
-        location.href = "/home.html";
+        location.href = "/public/home.html";
       }, 1000); // 1.0 second delay
     })
     .catch((error) => {
       console.error("Firebase Error:", error);
-      // ✅ Improved error handling with specific messages
+      //  Improved error handling with specific messages
       let message;
       switch (error.code) {
         case "auth/email-already-in-use":
@@ -160,7 +174,7 @@ function registerHandler(e) {
       }
       console.error("Registration error:", error);
 
-      // ✅ Display error dynamically inside the form
+      //  Display error dynamically inside the form
       if (errorMessage) {
         errorMessage.textContent = message;
         errorMessage.style.color = "red";
@@ -171,11 +185,11 @@ function registerHandler(e) {
 }
 
 // Added Code: Improved registration form handling
-// ✅ Ensure registration form exists before proceeding
+//  Ensure registration form exists before proceeding
 if (!register) {
   console.error("Error: Registration form not found.");
 } else {
-  register.removeEventListener("submit", registerHandler); // ✅ Prevent duplicate event bindings
+  register.removeEventListener("submit", registerHandler); //  Prevent duplicate event bindings
   register.addEventListener("submit", registerHandler);
   console.log("addEventListener registerHandler.");
 }

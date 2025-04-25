@@ -39,6 +39,7 @@ header nav ul li a {
 header nav ul li a:hover {
     color: #7E695C; /* Brownish color for hover */
 }
+
 /* Front-Page Attraction */
 .front-page-attraction {
     text-align: center;
@@ -68,7 +69,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2em;
+    /*padding: 2em;*/
 }
 
 /* Login Section */
@@ -131,15 +132,6 @@ main {
 
 .login-box a:hover {
     color: #E6D6C1;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 1em;
-    background-color: #1A303F; /* Dark navy color */
-    color: #E6D6C1;
-    width: 100%;
 }
 
 /* Registration Popup */
@@ -218,22 +210,13 @@ footer {
     text-decoration: none;
 }
 
-/* Library Page */
-#searchBtn {
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em;
     background-color: #1A303F; /* Dark navy color */
-    color: #E6D6C1; /* Light beige text */
-    border: none;
-    padding: 0.7em;
-    margin: 1em 0;
-    border-radius: 5px;
-    cursor: pointer;
+    color: #E6D6C1;
+    width: 100%;
 }
 
-#searchContentBox {
-    background-color: #2B505C; /* Muted teal color */
-    padding: 2em;
-    border-radius: 10px;
-    text-align: center;
-    width: 500px;
-}
 
